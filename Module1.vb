@@ -5,7 +5,7 @@ Module Module1
     Public device As String
     Function Device_connected(fuction As Integer) As Boolean
         Device_connected = False
-        Form1.Process3.StartInfo.Arguments = "devices"
+        Form1.Process3.StartInfo.Arguments = "start-server"
         Form1.Process3.Start()
         Form1.Process1.StartInfo.Arguments = "devices"
         Form1.Process1.Start()

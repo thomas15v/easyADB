@@ -48,30 +48,3 @@ Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: 
 
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
-
-[Code]
-WM_CLOSE = 16;
-
-Function InitializeSetup : Boolean;
-var winHwnd: longint;
-    retVal : boolean;
-    strProg: string;
-begin
-  Result := true;
-  try
-    //Either use FindWindowByClassName. ClassName can be found with Spy++ included with Visual C++. 
-    strProg := 'adb'
-    winHwnd := FindWindowByClassName(strProg);
-           Log('winHwnd: ' + inttostr(winHwnd));
-    if winHwnd <> 0 then
-      retVal:=postmessage(winHwnd,WM_CLOSE,0,0);
-      if retVal then
-        Result := Truconst
-e
-      else
-        Result := False;
-
-  except
-  end;
-
-end;
