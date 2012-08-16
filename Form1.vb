@@ -44,7 +44,11 @@ reload:
             SetWindowTheme(ListView1.Handle, "explorer", Nothing)
             'listview select first item (for having no error)
             Me.ListView1.Focus()
-            Me.ListView1.Items(0).Selected = True
+            Try
+                Me.ListView1.Items(0).Selected = True
+            Catch
+            End Try
+
 
         Else
             If Not device = Nothing Then
@@ -73,7 +77,15 @@ reload:
         If Device_connected(0) = True Then
             Process2.Kill()
         End If
-
+        Dim items() As Process = Process.GetProcesses
+        For Each Process In items
+            If Process.ProcessName = "adb" Then
+                Process.Refresh()
+                If Not Process.HasExited Then
+                    Process.Kill()
+                End If
+            End If
+        Next
     End Sub
     '
     '
