@@ -1,0 +1,9 @@
+ If output.EndsWith("/") Then
+                    ListView1.Items.Add(output.Replace("/", ""), 0).SubItems.Add("Folder")
+                Else
+                    If output.EndsWith("@") Then
+                        ListView1.Items.Add(output.Replace("@", ""), 1).SubItems.Add("Link")
+                    Else
+                        ListView1.Items.Add(output, 1).SubItems.Add("File")
+                    End If
+                End If
